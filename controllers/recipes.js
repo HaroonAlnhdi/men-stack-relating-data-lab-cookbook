@@ -22,7 +22,7 @@ router.get('/index', async (req, res) => {
     console.error('Error fetching recipes:', error);
     res.redirect('/');
   }
-  
+
 });
 
 router.get('/new', async (req, res) => {
@@ -51,13 +51,13 @@ router.post('/', async (req, res) => {
 });
 
 
-router.get('/:recipeId/show' , async (req,res) => {
+router.get('/:recipeId/show', async (req, res) => {
   try {
 
-    const recipes = await recipe.findById(req.params.recipeId) .populate('owner');
+    const recipes = await recipe.findById(req.params.recipeId).populate('owner');
 
     res.locals.recipe = recipes;
-    res.render('recipes/show.ejs'); 
+    res.render('recipes/show.ejs');
 
 
   } catch (error) {
@@ -69,9 +69,9 @@ router.get('/:recipeId/show' , async (req,res) => {
 })
 
 
-router.delete('/:recipeId/show' , async (req,res) => {
+router.delete('/:recipeId/show', async (req, res) => {
 
-  try{
+  try {
 
 
     const result = await recipe.deleteOne({ _id: req.params.recipeId });
@@ -81,16 +81,30 @@ router.delete('/:recipeId/show' , async (req,res) => {
       console.log('Recipe not found or already deleted');
       return res.redirect('/');
     }
-
-    // Redirect to the recipes index
     res.redirect('/');
 
-  }catch(error){
+  } catch (error) {
 
     console.log(error);
     res.redirect('/')
   }
 });
+
+
+router.get('/:recipeId/edit', async (req, res) => {
+
+  try {
+    const Recipes = await recipe.findById(req.params.recipeId);
+    res.locals.recipe = Recipes;
+    res.render('recipes/edit.ejs');
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+
+});
+
+
 
 
 
