@@ -30,10 +30,31 @@ router.get('/new', async (req, res) => {
 });
 
 
+
+
+router.post('/', async (req, res) => {
+  try {
+    const user = req.session.user;
+    // Create a new Recipe object using req.body
+    const newRecipe = new recipe(req.body);
+    console.log(req.body);
+    newRecipe.owner = user._id
+    // Save the new Recipe
+    await newRecipe.save();
+
+    // Redirect back to the recipe index view
+    res.redirect('recipes/index');
+  } catch (error) {
+    console.error('Error creating recipe:', error);
+    res.redirect('/');
+  }
+});
+
+
 router.get('/:recipeId/show' , async (req,res) => {
   try {
 
-    const recipes = await recipe.findById(req.params.recipeId);
+    const recipes = await recipe.findById(req.params.recipeId) .populate('owner');
 
     res.locals.recipe = recipes;
     res.render('recipes/show.ejs'); 
@@ -47,22 +68,31 @@ router.get('/:recipeId/show' , async (req,res) => {
   // res.render('recipes/show.ejs')
 })
 
-router.post('/', async (req, res) => {
-  try {
-    const user = req.session.user;
-    // Create a new Recipe object using req.body
-    const newRecipe = new recipe(req.body);
-    console.log(req.body);
-    newRecipe.owner = user._id
-    // Save the new Recipe
-    await newRecipe.save();
 
-    // Redirect back to the recipe index view
-    res.redirect('recipes/index.ejs');
-  } catch (error) {
-    console.error('Error creating recipe:', error);
+router.delete('/:recipeId/show' , async (req,res) => {
+
+  try{
+
+
+    const result = await recipe.deleteOne({ _id: req.params.recipeId });
+
+    // Check if any document was deleted
+    if (result.deletedCount === 0) {
+      console.log('Recipe not found or already deleted');
+      return res.redirect('/');
+    }
+
+    // Redirect to the recipes index
     res.redirect('/');
+
+  }catch(error){
+
+    console.log(error);
+    res.redirect('/')
   }
 });
+
+
+
 
 module.exports = router;

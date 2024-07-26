@@ -14,12 +14,17 @@
     <p><strong>Ingredients:</strong></p>
     <ul>
         <% recipe.ingredients.forEach(ingredient => { %>
-            <li><%= ingredient.name %></li> <!-- Assuming Ingredient model has a `name` field -->
+            <li><%= ingredient.name %></li> 
         <% }) %>
     </ul>
 
-    <p><strong>Owner:</strong> <%= recipe.owner.username %></p> <!-- Assuming User model has a `username` field -->
-
-    <a href="/recipes">Back to Recipes</a>
+    <p><strong>Owner:</strong> <%= recipe.owner.username %></p> 
+<div class="delButn">
+    <form
+    action="/recipes/<%= recipe._id %>/show?_method=DELETE" method="POST">
+    <button type="submit">Delete Recipe</button>
+  </form>
+</div>
+    <a href="/">Back to Recipes</a>
 </body>
 </html>
