@@ -6,9 +6,11 @@
   <title>Home Page</title>
 </head>
 <body>
+ 
   <% if (user) { %>
     <h1>Welcome to the app, <%= user.username %>!</h1>
     <p>
+      <a href="../recipes/index">View my Recipes</a>
       <a href="/auth/sign-out">Sign out</a>
     </p>
   <% } else { %>
