@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Recipe Details</title>
 </head>
 <body>
-    <h1> Welco to Show</h1>
+    <h1><%= recipe.name %></h1>
+
+    <p><strong>Instructions:</strong></p>
+    <p><%= recipe.instructions %></p>
+
+    <p><strong>Ingredients:</strong></p>
+    <ul>
+        <% recipe.ingredients.forEach(ingredient => { %>
+            <li><%= ingredient.name %></li> <!-- Assuming Ingredient model has a `name` field -->
+        <% }) %>
+    </ul>
+
+    <p><strong>Owner:</strong> <%= recipe.owner.username %></p> <!-- Assuming User model has a `username` field -->
+
+    <a href="/recipes">Back to Recipes</a>
 </body>
 </html>

@@ -31,7 +31,20 @@ router.get('/new', async (req, res) => {
 
 
 router.get('/:recipeId/show' , async (req,res) => {
-  res.render('recipes/show.ejs')
+  try {
+
+    const recipes = await recipe.findById(req.params.recipeId);
+
+    res.locals.recipe = recipes;
+    res.render('recipes/show.ejs'); 
+
+
+  } catch (error) {
+    console.error('Error fetching recipe:', error);
+    res.redirect('/');
+  }
+
+  // res.render('recipes/show.ejs')
 })
 
 router.post('/', async (req, res) => {

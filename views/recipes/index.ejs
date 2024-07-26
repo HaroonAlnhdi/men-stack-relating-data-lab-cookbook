@@ -11,10 +11,12 @@
     <% if (recipes.length > 0) { %>
         <ul>
             <% recipes.forEach(recipe => { %>
+              <a href="/recipes/<%= recipe._id%>/show">
                 <li>
                     <h2><%= recipe.name %></h2>
                     <p><%= recipe.instructions %></p>
                 </li>
+              </a>
             <% }) %>
         </ul>
     <% } else { %>
