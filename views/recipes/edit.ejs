@@ -15,10 +15,10 @@
         <label for="instructions">Instructions:</label><br>
         <textarea id="instructions" name="instructions"><%= recipe.instructions %></textarea><br><br>
         
-        <label for="ingredients">Ingredients (comma-separated IDs):</label><br>
+        <label for="ingredients">Ingredients:</label><br>
         <input type="text" id="ingredients" name="ingredients" value="<%= recipe.ingredients.join(',') %>"><br><br>
         
-        <input type="submit" value="Update Recipe">
+        <input type="submit" value="Edit Recipe">
     </form>
 
     <a href="/recipes">Back to Recipes</a>

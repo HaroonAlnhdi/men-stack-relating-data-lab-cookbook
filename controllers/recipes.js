@@ -105,7 +105,23 @@ router.get('/:recipeId/edit', async (req, res) => {
 });
 
 
+router.put('/:recipeId', async (req, res) => {
+  try {
+    const Recipes = await recipe.findById(req.params.recipeId);
 
+    Recipes.name = req.body.name;
+    Recipes.instructions = req.body.instructions;
+    // updates the ingredients if provided, otherwise keeps the current ingredients.
+    Recipes.ingredients = req.body.ingredients ? req.body.ingredients.split(',').map(id => id.trim()) : recipe.ingredients;
+
+    await Recipes.save();
+
+    res.redirect(`/recipes/${Recipes._id}/show`);
+  } catch (error) {
+    console.error('Error updating recipe:', error);
+    res.redirect('/');
+  }
+});
 
 
 

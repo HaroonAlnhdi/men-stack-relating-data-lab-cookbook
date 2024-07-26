@@ -1,4 +1,4 @@
-<nav>
+<nav class="navbar">
 
     <% if (user) { %>
         <a href="../recipes/index">View my Recipes</a>
@@ -10,3 +10,29 @@
             
             <% } %>
 </nav>
+
+<style>
+
+button:hover {
+  background-color: #357ab7;
+}
+
+.navbar {
+  /* background-color: #333; */
+  color: #333 ;
+  padding: 10px;
+  width: 50%;
+  text-align: center;
+}
+
+.navbar a {
+  color: #333;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+</style>
