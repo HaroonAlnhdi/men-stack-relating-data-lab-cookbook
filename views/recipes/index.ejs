@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Recipes</title>
-  </head>
-  <body>
-    <h1>Welcome to My Recipes</h1>
-    <a href="./new">Add New Recipe</a>
-  </body>
+</head>
+<body>
+    <h1>My Recipes</h1>
+
+    <% if (recipes.length > 0) { %>
+        <ul>
+            <% recipes.forEach(recipe => { %>
+                <li>
+                    <h2><%= recipe.name %></h2>
+                    <p><%= recipe.instructions %></p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>You have not created any recipes yet.</p>
+    <% } %>
+
+    <a href="/recipes/new">Create a new recipe</a>
+</body>
 </html>
