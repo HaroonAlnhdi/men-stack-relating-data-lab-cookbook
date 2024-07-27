@@ -80,7 +80,7 @@ router.delete('/:recipeId/show', async (req, res) => {
       console.log('Recipe not found or already deleted');
       return res.redirect('/');
     }
-    res.redirect('/');
+    res.redirect('/recipes/index');
 
   } catch (error) {
 

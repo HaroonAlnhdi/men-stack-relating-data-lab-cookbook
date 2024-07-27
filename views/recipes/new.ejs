@@ -86,7 +86,7 @@
         <h3>Ingredients</h3>
         <% ingredients.forEach(ingredient => { %>
           <label>
-            <input type="checkbox" name="ingredientIds" value="<%= ingredient._id %>">
+            <input type="checkbox" name="ingredients" value="<%= ingredient._id %>">
             <%= ingredient.name %>
           </label><br>
         <% }); %>
