@@ -83,7 +83,13 @@
         <label for="instructions">Instructions:</label><br>
         <textarea id="instructions" name="instructions"></textarea><br><br>
 
-        
+        <h3>Ingredients</h3>
+        <% ingredients.forEach(ingredient => { %>
+          <label>
+            <input type="checkbox" name="ingredientIds" value="<%= ingredient._id %>">
+            <%= ingredient.name %>
+          </label><br>
+        <% }); %>
 
         <input type="submit" value="Submit">
     </form>

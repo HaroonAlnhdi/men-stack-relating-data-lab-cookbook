@@ -4,6 +4,7 @@ const router = express.Router();
 
 const User = require('../models/user.js');
 const recipe = require('../models/recipe.js');
+const Ingredient = require('../models/ingredient.js');
 
 router.get('/index', async (req, res) => {
   try {
@@ -23,7 +24,8 @@ router.get('/index', async (req, res) => {
 });
 
 router.get('/new', async (req, res) => {
-  res.render('recipes/new.ejs');
+  const ingredients = await Ingredient.find();
+  res.render('recipes/new.ejs', { ingredients });
 });
 
 
