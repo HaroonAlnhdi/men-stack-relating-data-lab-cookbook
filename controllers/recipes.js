@@ -7,10 +7,7 @@ const recipe = require('../models/recipe.js');
 
 router.get('/index', async (req, res) => {
   try {
-    // Fetch the user from the session
     const user = req.session.user;
-
-    // Look up the current user's recipes
     const recipes = await recipe.find({ owner: user._id });
 
     // Send all recipes to the view 

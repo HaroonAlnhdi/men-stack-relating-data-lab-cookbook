@@ -1,13 +1,16 @@
 <nav class="navbar">
 
     <% if (user) { %>
-        <a href="../recipes/index">View my Recipes</a>
+       <a href="/">Home</a>
+        <a href="../recipes/index">View  Recipes</a>
+        <a href="../ingredien/index">View Ingredients</a>
         <a href="/">sign Out</a>
         <% } else {  %>
-
-            <a href="../auth/sign-up">Sign up</a>
-            <a href="../auth/sign-in">Sign in</a>
             <a href="/">Home</a>
+            <a href="../auth/sign-in">Sign in</a>
+            <a href="../auth/sign-up">Sign up</a>
+            
+            
             <% } %>
 </nav>
 
